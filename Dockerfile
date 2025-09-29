@@ -6,16 +6,16 @@ USER root
 # ------------------------------------
 RUN <<EOF
 apt update
-apt install -y software-properties-common
-add-apt-repository ppa:deadsnakes/ppa
+apt install -y software-properties-common curl
+add-apt-repository ppa:deadsnakes/ppa -y
 apt update
-apt install -y python3.11 python3.11-pip python3.11-venv python3.11-dev python3.11-distutils
+apt install -y python3.11 python3.11-venv python3.11-dev
 rm -rf /var/lib/apt/lists/*
+# Install pip manually for Python 3.11
+curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 --break-system-packages
 # Create symlinks
 ln -sf /usr/bin/python3.11 /usr/bin/python
-ln -sf /usr/bin/pip3.11 /usr/bin/pip
-# Ensure ensurepip is available
-python3.11 -m ensurepip --upgrade
+ln -sf /usr/local/bin/pip3.11 /usr/bin/pip
 EOF
 
 USER 1000
