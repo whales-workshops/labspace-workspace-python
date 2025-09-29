@@ -1,4 +1,4 @@
-FROM labspace-workspace-base
+FROM dockersamples/labspace-workspace-base:latest
 
 USER root
 # ------------------------------------
