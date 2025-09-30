@@ -19,5 +19,9 @@ ln -sf /usr/local/bin/pip3.11 /usr/bin/pip
 EOF
 
 USER 1000
-RUN code-server --install-extension orta.vscode-jest && \
-    rm -rf /home/coder/.local/share/code-server/CachedExtensionVSIXs/.trash/*
+RUN <<EOF
+code-server --install-extension ms-python.python \
+  --install-extension ms-python.black-formatter
+rm -rf /home/coder/.local/share/code-server/CachedExtensionVSIXs/.trash/*
+EOF
+
